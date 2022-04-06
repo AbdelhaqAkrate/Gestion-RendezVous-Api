@@ -1,0 +1,15 @@
+::-webkit-scrollbar {display:none;}
+.feild{
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+.container{
+    text-align: center;
+    padding: 25px;
+}
+h2{
+    padding: 20px;
+}
+.table{
+    transform: translateY(5%);
+}
