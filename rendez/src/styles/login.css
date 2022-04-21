@@ -15,6 +15,15 @@
         border-top-left-radius: .3rem;
         border-top-right-radius: .3rem;
 }
+.logo{
+    width: 45%;
+    height: 100px;
+    background: url('../images/image_processing20200408-10542-410lpj-removebg-preview.png');
+    background-position: center;
+    background-size: cover;
+    transform: translate(65%, 10px);
+}
+
 h2{
      display: block;
      font-size: 1.25rem;

@@ -23,7 +23,7 @@ const Navbar = () => {
             
         <nav className="navbar">
 			<Link to="/" className="nav-logo">
-				 <img className="logo" src={image} alt="" />
+				 Pretty Smile
 			</Link>
 			<div onClick={handleClick} className="nav-icon">
 				{open ? <FiX /> : <FiMenu />}
@@ -35,13 +35,18 @@ const Navbar = () => {
 					</Link>
 				</li>
 				<li className="nav-item">
-					<Link to="/appointment" className="nav-link" onClick={closeMenu}>
+					<Link to="/Appointment" className="nav-link" onClick={closeMenu}>
 						Appointment
 					</Link>
 				</li>
 				<li className="nav-item">
+					<Link to="/MyAppontement" className="nav-link" onClick={closeMenu}>
+						My Appointment
+					</Link>
+				</li>
+				<li className="nav-item">
 					<Link to="/" className="nav-link" onClick={closeMenu}>
-						<button className='logout' onClick={logOut}>Log Out</button>
+						<button className='logout' onClick={logOut}>Logout</button>
 					</Link>
 				</li>
 			</ul>

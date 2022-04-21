@@ -1,5 +1,6 @@
 import React from 'react';
 import Appointement from './Appointement';
+import MyAppontement from './reservedAppointement'
 import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 import {Navigate} from "react-router-dom"
 import Login from './login';
@@ -16,7 +17,8 @@ function App() {
         <Route path="/" element={<Login/>}/>
 
         <Route path="/Home" element={<Home/>}/>
-        <Route path="/appointment" element={<Appointement/>}/>
+        <Route path="/Appointment" element={<Appointement/>}/>
+        <Route path="/MyAppontement" element={<MyAppontement/>}/>
         <Route path="*" element={<Navigate to ="/" />}/>
 
 

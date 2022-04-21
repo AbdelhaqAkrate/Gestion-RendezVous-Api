@@ -2,7 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { Modal } from "react-bootstrap";
-
+import { FaEdit  } from "react-icons/fa";
+import { MdFreeCancellation } from "react-icons/md";
 import GetAppointement from "./Modal";
 import Navbar from './Navbar';
 import axios from "axios";
@@ -13,21 +14,21 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import "./styles/appointement.css";
 import Login from "./login";
 // import { Modal } from "bootstrap";
-const Appointement = () => {
-const [appointement, setAppointement] = useState([]);
+const MyAppontement = () => {
+const [reserved, setReserved] = useState([]);
 const [show, setShow] = useState(false);
 const handleShow = () =>setShow(true);
 const handleClose = () =>setShow(false)
-
+const [message, setMessage] = useState('');
 const [Creanu, setCreanu] = useState([]);
 const history = createBrowserHistory();
 const navigate = useNavigate();
   //fetch data using axios
      useEffect (() => {
-        axios.get("http://localhost/RendezVous/rendezBack/rendez/getAppointements")
+        axios.get(`http://localhost/RendezVous/rendezBack/rendez/reservedAppointement/${localStorage["IdUser"]}`)
         .then(result=>
             {
-            setAppointement(result.data) 
+            setReserved(result.data) 
             })
             .catch(err =>{
                 console.log(err)
@@ -57,6 +58,18 @@ const navigate = useNavigate();
             })
      
     }
+
+    function Delete(id) {
+      axios.get(`http://localhost/RendezVous/rendezBack/rendez/deleteAppointement/${id}`)
+        .then(Response=>{
+            console.log(Response.status);
+            console.log();
+            setMessage(Response.data.message);
+        })
+    }
+
+
+
     
  if(typeof localStorage["access_token"] !== 'undefined' && tokenexpiration>0)
       {
@@ -86,25 +99,27 @@ const navigate = useNavigate();
 
       <Navbar />
       <div className="container">
+           { message !== '' ? <div className="message">{message}</div> : null }
         <h2>Doctor Schedule</h2>
          <Table striped bordered hover className="table">
             <thead>
               <tr>
-                <th>#</th>
+                <th>Sujet</th>
                 <th>start Time</th>
                 <th>End Time</th>
                 <th>Day</th>
-                <th>Action</th>
+                <th colspan="2">Action</th>
               </tr>
             </thead>
             <tbody>
-               {appointement.map(rdv=>(
-              <tr key={rdv.idCreanu}>
-                <td>{rdv.idCreanu}</td>
+               {reserved.map(rdv=>(
+              <tr key={rdv.idRDV}>
+                <td>{rdv.sujetRDV}</td>
                 <td>{rdv.startTime}</td>
                 <td>{rdv.endTime}</td>
                 <td>{rdv.day}</td>
-                <td><Button onClick={()=>{ Get(rdv.idCreanu,handleShow);handleShow();}}>Get</Button></td>
+                <td><Button variant="info" onClick={()=>{ Get(rdv.idCreanu,handleShow);handleShow();}}>< FaEdit /></Button></td> 
+                <td><Button variant="danger" onClick={()=>{ Delete(rdv.idRDV)}}><MdFreeCancellation/></Button></td>
               </tr>))}
             </tbody>
         </Table>
@@ -123,4 +138,4 @@ else{
 }
  }
  
-export default Appointement;
+export default MyAppontement;

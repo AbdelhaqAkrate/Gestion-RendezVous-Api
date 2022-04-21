@@ -35,6 +35,45 @@ public function getAppointements()
      $appointements = json_encode($operation->getAppointements());
      echo $appointements;
 }
+public function getCreneau($id)
+{
+   $operation = new Operation();
+     $creneau = json_encode($operation->getCreneau($id));
+     echo $creneau;
+}
+public function reservedAppointement($id)
+{
+   $operation = new Operation();
+     $reserved = json_encode($operation->reservedAppointement($id));
+     echo $reserved;
+}
+//reserve Appointement
+public function reserveAppointement()
+{
+   $operation = new Operation();
+  $idUser=json_decode(file_get_contents("php://input"));
+  $idCreanu=json_decode(file_get_contents("php://input"));
+  $reason=json_decode(file_get_contents("php://input"));
+    if($operation->reserveAppointement($reason->reason,$idUser->idUser,$idCreanu->idCreanu)){
+            http_response_code(200);
+            echo  json_encode(array("message" => "Your Appointement Reserved successfully !!"));
+            }
+            else {
+            http_response_code(400);
+            echo json_encode(array("message" => "Reservation error encoutred"));}
+}
+//dekete appointement
+public function deleteAppointement($id)
+{
+   $operation = new Operation();
+    if($operation->DeleteAppointement($id)){
+            http_response_code(200);
+            echo  json_encode(array("message" => "Appointement Deleted successfully !!"));
+            }
+            else {
+            http_response_code(400);
+            echo json_encode(array("message" => "Error encoutred"));}
+}
 
 //regester Methode 
 public function singUp()

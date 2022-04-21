@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Rowdies&family=Rubik:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai&display=swap');
 .navbar {
 	height: 80px;
 	width: 100%;
-	background: whitesmoke;
+	background: rgb(255, 255, 255);
 	color: white;
 	display: flex;
 	justify-content: space-between;
@@ -10,29 +12,42 @@
 	font-size: 1.2rem;
 }
 .logout{
-	background: none;
-	border: none;
+	 background: black;
+    border: none;
+    color: #fff;
+    padding: 5px 5px;
+    font-size: 16px;
+    width: 100px;
+    border-radius: 30px;
+    /* margin-top: 10px; */
+    letter-spacing: 2px;
+    cursor: pointer;
 }
 
 .nav-logo {
 	text-decoration: none;
 	color: black;
+	font-family: 'Pacifico', cursive;
 }
-.logo{
+/* .logo{
     width: 90px;
     height: 90px;
-}
+} */
 .nav-links {
 	display: grid;
-	grid-template-columns: repeat(3, auto);
+	grid-template-columns: repeat(4, auto);
 	/* grid-gap: 20px; */
 	list-style: none;
+	margin-right: 20px;
+	/* justify-items: center;
+    align-items: end; */
 }
 
 .nav-link {
 	text-decoration: none;
 	color: black;
 	transition: 0.3s all;
+	font-family: 'Arima Madurai', cursive;
 }
 
 .nav-link:hover {
@@ -59,12 +74,14 @@
 		width: 100%;
 		top: 80px;
 		left: -100%;
+		
 		transition: 0.5s all;
 	}
 
 	.nav-links.active {
 		background: whitesmoke;
 		left: 0;
+		z-index: 1;
 	}
 
 	.nav-item {

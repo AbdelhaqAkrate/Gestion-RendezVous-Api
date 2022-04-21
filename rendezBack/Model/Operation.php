@@ -59,7 +59,46 @@ public function getAppointements()
     }
 }
 
-
+public function getCreneau($id)
+{
+    $query = $this->connect()->prepare("SELECT * FROM `creneau` Where `idCreanu` = '$id'");
+    if($query->execute())
+    {
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+    else{
+        return 0;
+    }
+}
+//get reserved appointement 
+public function reservedAppointement($id)
+{
+      $query = $this->connect()->prepare("SELECT appointement.idRDV,appointement.sujetRDV,creneau.startTime,creneau.endTime,creneau.day FROM `appointement` join `creneau` on appointement.idCreanu = creneau.idCreanu WHERE appointement.IdUser='$id';");
+    if($query->execute())
+    {
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+    else{
+        return 0;
+    }
+}
+//Delete appointement
+public function DeleteAppointement($id)
+{
+    $query = $this->connect()->prepare("DELETE FROM `appointement` WHERE `idRDV` = '$id'");
+    if($query->execute())
+    return true;
+    return false;
+}
+//add an appointement
+public function reserveAppointement($reason,$idUser,$idCreanu)
+{
+    $query=$this->connect()->prepare("INSERT INTO `appointement`(`sujetRDV`, `IdUser`, `idCreanu`) VALUES ('$reason','$idUser','$idCreanu')");
+        if($query->execute())
+           return true;
+        return false;
+}   
+//
 
 
 public function getUsers($id)

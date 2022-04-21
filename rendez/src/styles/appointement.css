@@ -11,5 +11,14 @@ h2{
     padding: 20px;
 }
 .table{
-    transform: translateY(5%);
+    border: 1px solid black;
+    
+}
+thead{
+    background-color: rgb(255, 255, 255);
+}
+tbody{
+    background-color:#020a0c00;
+    font-weight: bold;
+    color: rgb(14, 1, 1);
 }

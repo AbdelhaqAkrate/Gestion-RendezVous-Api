@@ -13,7 +13,7 @@ const Login = () => {
     try {
         //  var qs = require('qs')
         let response = await axios.post('http://localhost/RendezVous/rendezBack/rendez/login',JSON.stringify({'id':password}));
-        console.log(JSON.stringify({'id':password}));
+        // console.log(JSON.stringify({'id':password}));
             console.log(response.data)
         if(response.status === 200 && response.data.jwt && response.data.expire){
             let jwt = response.data.jwt;
@@ -46,9 +46,10 @@ const Login = () => {
                     <div className="header">
                          <h2>Login</h2>
                     </div>
-                    
+                    <div className="logo">
+                       
+                    </div>
                     <div className="block">
-                        <h2>Welcome Back</h2>
                          <input type="password" name="password" placeholder="Your Code" onChange={(e)=>setPassword(e.target.value)} value={password} required />
                     </div>
                     <div className="footer">
